@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using News.Components;
 using Pomelo.EntityFrameworkCore.MySql;
+using MudBlazor.Services;
+using News;
 
 
 
@@ -9,7 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+
+builder.Services.AddMudServices();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
@@ -25,6 +30,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
@@ -32,5 +38,6 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
+
 
 app.Run();
