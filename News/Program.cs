@@ -3,7 +3,8 @@ using News.Components;
 using Pomelo.EntityFrameworkCore.MySql;
 using MudBlazor.Services;
 using News;
-using News.Components; 
+using News.Components;
+using News.Services;
 
 
 
@@ -14,6 +15,9 @@ builder.Services.AddRazorComponents()
 
 
 builder.Services.AddMudServices();
+
+//Dependecies Injections
+builder.Services.AddScoped<CategoryServices>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(

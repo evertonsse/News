@@ -2,9 +2,7 @@
 @using News.Models;
 @using Microsoft.EntityFrameworkCore;
 @using News;
-@inject AppDbContext dbContext;
-
-
+@inject Services.CategoryServices CategoryService
 
 <MudThemeProvider @rendermode="InteractiveServer" />
 <MudSnackbarProvider @rendermode="InteractiveServer" />
@@ -17,9 +15,6 @@
     <MudAppBar Elevation="1" Dense="@_dense">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
         <MudText Typo="Typo.h6">Site de Notícias</MudText>
-
-
-        
 
             <MudSpacer />
             <MudSpacer />
@@ -43,8 +38,6 @@
             <MudSpacer />
             <MudSpacer />
             <MudSpacer />
-
-
 
     </MudAppBar>
     <MudDrawer @bind-Open="@_open" ClipMode="DrawerClipMode.Docked" Elevation="1" Variant="@DrawerVariant.Responsive">
@@ -83,9 +76,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        categories = await dbContext.Category.ToListAsync(); 
+        categories = CategoryService.GetCategories();
 
 
     }
+
+
+
 }
 
