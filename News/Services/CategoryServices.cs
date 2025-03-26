@@ -20,13 +20,5 @@ namespace News.Services
         }
 
 
-        public List<Category> GetMostAccessedCategories()
-        {
-
-            var mostAccessedCategories = _context.Category.FromSqlRaw();
-           
-
-
-        }
     }
 }
