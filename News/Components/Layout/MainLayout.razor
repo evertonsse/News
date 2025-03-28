@@ -16,28 +16,25 @@
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
         <MudText Typo="Typo.h6">Site de Notícias</MudText>
 
-            <MudSpacer />
-            <MudSpacer />
-            <MudSpacer />
-            <MudButton> <MudNavLink> Inicio </MudNavLink></MudButton>
+        <MudSpacer />
+        <MudSpacer />
+        <MudSpacer />
+        
+        @{
+            foreach (var category in mostAccessedCategories)
+            {
+                <MudSpacer />
 
-            <MudSpacer />
+                <MudButton> <MudNavLink> @category.Name</MudNavLink></MudButton>
 
-            <MudButton> Teste</MudButton>
+                <MudSpacer />
 
-            <MudSpacer />
+            }
+        }       
 
-            <MudButton> Teste</MudButton>
-            <MudSpacer />
-
-            <MudButton> Teste</MudButton>
-            <MudSpacer />
-
-            <MudButton> Teste</MudButton>
-
-            <MudSpacer />
-            <MudSpacer />
-            <MudSpacer />
+        <MudSpacer />
+        <MudSpacer />
+        <MudSpacer />
 
     </MudAppBar>
     <MudDrawer @bind-Open="@_open" ClipMode="DrawerClipMode.Docked" Elevation="1" Variant="@DrawerVariant.Responsive">
@@ -76,8 +73,15 @@
 
     protected override async Task OnInitializedAsync()
     {
-        categories = CategoryService.GetCategories();
+        categories = await  CategoryService.GetCategories();
+        mostAccessedCategories = await CategoryService.MostAccessedCategories();
 
+
+        foreach (var cat in mostAccessedCategories)
+        {
+            Console.WriteLine(cat.Name);
+
+        }
 
     }
 
