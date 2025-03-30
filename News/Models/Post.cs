@@ -7,6 +7,8 @@
         public string Content { get; set; } = string.Empty;
         public int Hits { get; set; }
 
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+
         public int CategoryId { get; set; }
 
         public required Category Category { get; set; }

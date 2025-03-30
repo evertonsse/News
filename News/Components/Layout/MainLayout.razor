@@ -24,11 +24,8 @@
             foreach (var category in mostAccessedCategories)
             {
                 <MudSpacer />
-
-                <MudButton> <MudNavLink> @category.Name</MudNavLink></MudButton>
-
+                <MudButton Class="pa-2 mud-theme-primary"><MudText Typo="Typo.subtitle2" HtmlTag="strong">@category.Name</MudText></MudButton>
                 <MudSpacer />
-
             }
         }       
 
@@ -77,11 +74,7 @@
         mostAccessedCategories = await CategoryService.MostAccessedCategories();
 
 
-        foreach (var cat in mostAccessedCategories)
-        {
-            Console.WriteLine(cat.Name);
-
-        }
+        
 
     }
 
