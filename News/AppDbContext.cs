@@ -3,10 +3,8 @@ using News.Models;
 
 
 
-namespace News
-{
-    public class AppDbContext : DbContext
-    {
+namespace News {
+    public class AppDbContext : DbContext {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
 
@@ -16,9 +14,7 @@ namespace News
         public DbSet<Visit> Visit { get; set; }
 
 
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
             modelBuilder.Entity<Visit>()
                 .HasOne(v => v.Post)
@@ -29,6 +25,11 @@ namespace News
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Posts)
                 .HasForeignKey(p => p.CategoryId);
+
+            modelBuilder.Entity<Images>()
+               .HasOne(i => i.Post)
+               .WithMany(p => p.Images)
+               .HasForeignKey(i => i.PostId);
 
         }
 

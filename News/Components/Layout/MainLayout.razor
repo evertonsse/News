@@ -19,15 +19,14 @@
         <MudSpacer />
         <MudSpacer />
         <MudSpacer />
-        
+
         @{
-            foreach (var category in mostAccessedCategories)
-            {
+            foreach (var category in mostAccessedCategories) {
                 <MudSpacer />
                 <MudButton Class="pa-2 mud-theme-primary"><MudText Typo="Typo.subtitle2" HtmlTag="strong">@category.Name</MudText></MudButton>
                 <MudSpacer />
             }
-        }       
+        }
 
         <MudSpacer />
         <MudSpacer />
@@ -37,8 +36,7 @@
     <MudDrawer @bind-Open="@_open" ClipMode="DrawerClipMode.Docked" Elevation="1" Variant="@DrawerVariant.Responsive">
 
         <MudNavMenu>
-            @foreach (var category in categories)
-            {
+            @foreach (var category in categories) {
                 <MudNavLink>@category.Name</MudNavLink>
             }
 
@@ -62,19 +60,17 @@
 
 
 
-    private void ToggleDrawer()
-    {
+    private void ToggleDrawer() {
         _open = !_open;
     }
 
 
-    protected override async Task OnInitializedAsync()
-    {
-        categories = await  CategoryService.GetCategories();
+    protected override async Task OnInitializedAsync() {
+        categories = await CategoryService.GetCategories();
         mostAccessedCategories = await CategoryService.MostAccessedCategories();
 
 
-        
+
 
     }
 

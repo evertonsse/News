@@ -18,6 +18,7 @@ builder.Services.AddMudServices();
 
 //Dependecies Injections
 builder.Services.AddScoped<CategoryServices>();
+builder.Services.AddScoped<PostServices>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
@@ -28,10 +29,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
-if (!app.Environment.IsDevelopment())
-{
+if (!app.Environment.IsDevelopment()) {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-   
+
     app.UseHsts();
 }
 
