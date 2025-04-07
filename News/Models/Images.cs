@@ -2,6 +2,7 @@
 
 namespace News.Models {
     public class Images {
+
         public int Id { get; set; }
         public string Path { get; set; } = string.Empty;
         public bool Thumbnail { get; set; }

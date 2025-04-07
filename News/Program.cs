@@ -5,14 +5,10 @@ using MudBlazor.Services;
 using News;
 using News.Services;
 
-
-
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
-
 
 builder.Services.AddMudServices();
 
@@ -20,12 +16,13 @@ builder.Services.AddMudServices();
 builder.Services.AddScoped<CategoryServices>();
 builder.Services.AddScoped<PostServices>();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(
+builder.Services.AddDbContextFactory<AppDbContext>(options =>
+ options.
+ UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
     )
-);
+); 
 
 var app = builder.Build();
 
@@ -34,15 +31,10 @@ if (!app.Environment.IsDevelopment()) {
 
     app.UseHsts();
 }
-
-
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
-
-
 app.Run();

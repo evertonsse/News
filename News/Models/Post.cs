@@ -10,7 +10,7 @@
         public int CategoryId { get; set; }
         public required Category Category { get; set; }
 
-        public int ImageId { get; set; }
-        public required List<Images> Images { get; set; }
+        public List<Images> Images { get; set; } = new(); // Relacionamento 1:N
     }
+
 }

@@ -3,26 +3,18 @@
 @inject Services.PostServices PostServices;
 
 
-<MudCarousel Class="mud-width-full" ItemsSource="@_posts" Style="height:200px;" ShowArrows="true" ShowBullets="true" EnableSwipeGesture="true">
-    @{
-        foreach (var post in _posts) {
-            <MudCarouselItem>
-
-
-            </MudCarouselItem>
-        }
-    }
-
-</MudCarousel>
-
-
 
 
 @code {
-    private List<Post> _posts = new();
+    private bool _isLoading;
+    private List<Post>? _posts ;
+
+   
 
     protected override async Task OnInitializedAsync() {
-        _posts = await PostServices.MostAccessedPosts();
+        Console.WriteLine("OnInitializedAsync");
+        _posts = await PostServices.GetPosts();
+       
     }
 
 

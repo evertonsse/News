@@ -26,10 +26,10 @@ namespace News {
                 .WithMany(c => c.Posts)
                 .HasForeignKey(p => p.CategoryId);
 
-            modelBuilder.Entity<Images>()
-               .HasOne(i => i.Post)
-               .WithMany(p => p.Images)
-               .HasForeignKey(i => i.PostId);
+            modelBuilder.Entity<Post>()
+                .HasMany(p => p.Images)
+                .WithOne(i => i.Post)
+                .HasForeignKey(i => i.PostId);
 
         }
 
